@@ -7,10 +7,10 @@ const Header = () => {
   return (
     <div> 
       <div
-        className="relative w-full h-[40rem] bg-no-repeat bg-bottom"
+        className="relative w-full h-[40rem]"
         style={{
           backgroundImage: `url(${assets.header})`,
-          backgroundSize: "100% auto",
+          backgroundSize: "cover",
         }}
       >
         
