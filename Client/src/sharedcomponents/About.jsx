@@ -20,7 +20,7 @@ const About = () => {
         />
 
         {/* Floating 25+ years badge - kept your original styling */}
-        <div className="absolute -top-4 -right-4 md:top-10 md:-right-20 bg-green-500 text-white font-semibold px-3 py-2 md:px-4 md:py-2 rounded-lg text-xs md:text-base animate-bounce">
+        <div className="absolute -top-4 -right-4 md:top-10 md:-right-37 bg-green-500 text-white font-semibold px-3 py-2 md:px-4 md:py-2 rounded-lg text-xs md:text-base animate-bounce">
           25+ Years Trusted Hospital
         </div>
       </div>
