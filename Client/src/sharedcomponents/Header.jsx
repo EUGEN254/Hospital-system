@@ -6,59 +6,61 @@ import { FaPlay } from "react-icons/fa";
 const Header = () => {
   return (
     <div className="relative w-full">
+      {/* Background Image */}
       <img
         src={assets.header}
         alt="header-section"
         className="w-full h-[40rem]"
       />
-      <div className="absolute top-0 left-0 w-full z-10">
+
+      {/* Navbar */}
+      <div className="absolute top-0 left-0 w-full z-60">
         <Navbar />
       </div>
 
-      {/* Description + Doctor */}
+      {/* Content */}
       <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full max-w-6xl px-4 z-10">
         <div className="flex flex-col md:flex-row items-center justify-between gap-8">
           {/* Text block */}
           <div className="text-center md:text-left text-white max-w-xl space-y-4">
-            <h1 className="text-4xl md:text-5xl font-bold">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold">
               Your Health, Our Priority
             </h1>
-            <p className="text-lg md:text-xl">
+            <p className="text-base sm:text-lg md:text-xl">
               We combine modern technology with compassionate care to ensure
               your well-being.
             </p>
-            <div className="flex gap-4 mt-6 justify-center md:justify-start">
+            <div className="flex flex-col sm:flex-row gap-4 mt-6 justify-center md:justify-start">
               {/* Get Started Button */}
               <button className="bg-green-500 hover:bg-green-600 text-white py-2 px-6 rounded-lg font-semibold transition duration-300">
                 Get Started
               </button>
 
               {/* Watch Video Button */}
-              <button className="flex items-center gap-3 px-4 py-2 rounded-lg text-white bg-white/20 hover:bg-white/30 backdrop-blur-md transition duration-300 hover:scale-105">
-                {/* Play Icon inside a circle */}
+              <button className="flex items-center gap-2 sm:gap-3 px-4 py-2 rounded-lg text-white bg-white/20 hover:bg-white/30 backdrop-blur-md transition duration-300 hover:scale-105 justify-center sm:justify-start">
                 <div className="w-8 h-8 flex items-center justify-center bg-green-500 rounded-full hover:bg-green-600 transition duration-300">
                   <FaPlay className="w-4 h-4 text-white" />
                 </div>
-                <span className="font-medium">Watch Video</span>
+                <span className="font-medium text-sm sm:text-base">Watch Video</span>
               </button>
             </div>
           </div>
 
           {/* Doctor Image */}
-          <div className="relative flex-shrink-0">
+          <div className="relative flex-shrink-0 mt-8 md:mt-0">
             {/* Decorative Circle */}
-            <div className="absolute -top-6 -left-6 w-24 h-24 rounded-full bg-green-500 opacity-30 z-0"></div>
+            <div className="absolute -top-6 -left-6 w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-green-500 opacity-30 z-0"></div>
 
             {/* Doctor Image */}
             <img
               src={assets.doctor}
               alt="doctor"
-              className="relative w-48 md:w-64 lg:w-80 z-10"
+              className="relative w-36 sm:w-48 md:w-64 lg:w-80 z-10"
             />
 
             {/* Group Profiles */}
-            <div className="absolute top-[60px] -right-4">
-              <img src={assets.group_profiles} alt="group" />
+            <div className="absolute top-[50px] -right-4">
+              <img src={assets.group_profiles} alt="group" className="w-16 sm:w-20" />
             </div>
           </div>
         </div>
