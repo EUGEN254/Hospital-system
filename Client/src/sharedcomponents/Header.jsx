@@ -1,6 +1,7 @@
 import React from "react";
 import assets from "../assets/assets";
 import Navbar from "./Navbar";
+import { FaPlay } from "react-icons/fa";
 
 const Header = () => {
   return (
@@ -26,9 +27,21 @@ const Header = () => {
               We combine modern technology with compassionate care to ensure
               your well-being.
             </p>
-            <button className="bg-green-500 hover:bg-green-600 text-white py-2 px-6 rounded-lg font-semibold transition duration-300">
-              Get Started
-            </button>
+            <div className="flex gap-4 mt-6 justify-center md:justify-start">
+              {/* Get Started Button */}
+              <button className="bg-green-500 hover:bg-green-600 text-white py-2 px-6 rounded-lg font-semibold transition duration-300">
+                Get Started
+              </button>
+
+              {/* Watch Video Button */}
+              <button className="flex items-center gap-3 px-4 py-2 rounded-lg text-white bg-white/20 hover:bg-white/30 backdrop-blur-md transition duration-300 hover:scale-105">
+                {/* Play Icon inside a circle */}
+                <div className="w-8 h-8 flex items-center justify-center bg-green-500 rounded-full hover:bg-green-600 transition duration-300">
+                  <FaPlay className="w-4 h-4 text-white" />
+                </div>
+                <span className="font-medium">Watch Video</span>
+              </button>
+            </div>
           </div>
 
           {/* Doctor Image */}
@@ -45,10 +58,7 @@ const Header = () => {
 
             {/* Group Profiles */}
             <div className="absolute top-[60px] -right-4">
-              <img
-                src={assets.group_profiles}
-                alt="group"
-              />
+              <img src={assets.group_profiles} alt="group" />
             </div>
           </div>
         </div>

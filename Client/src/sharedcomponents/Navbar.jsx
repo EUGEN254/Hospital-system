@@ -3,7 +3,7 @@ import assets from "../assets/assets";
 import { NavLink } from "react-router-dom";
 
 const Navbar = () => {
-  const navlinks = ["Home", "About-Us", "Contact-Us","Doctors","Billing-Information"];
+  const navlinks = ["Home", "About-Us","Features", "Contact-Us","Doctors","Billing-Information"];
 
   return (
     <div className="flex justify-between items-center bg-transparent max-w-5xl mx-auto p-4">

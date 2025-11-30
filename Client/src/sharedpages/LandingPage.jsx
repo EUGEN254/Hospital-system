@@ -6,7 +6,7 @@ import Testimonials from '../sharedcomponents/Testimonials'
 
 const LandingPage = () => {
   return (
-    <div>
+    <div className='bg-gray-100 overflow-auto'>
         <Header/>
         <About/>
         <Features/>
