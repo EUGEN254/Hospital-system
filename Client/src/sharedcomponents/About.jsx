@@ -16,7 +16,7 @@ const About = () => {
         <img
           src={assets.doctor1}
           alt="doctor"
-          className="w-64 max-w-xs mx-auto md:w-96 h-64 sm:h-40 md:h-[38rem] rounded-lg"
+          className="w-64 max-w-xs mx-auto md:w-96 h-64 sm:h-48 md:h-[38rem] rounded-lg"
         />
 
         {/* Floating 25+ years badge - kept your original styling */}

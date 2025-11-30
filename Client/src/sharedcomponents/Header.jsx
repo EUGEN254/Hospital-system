@@ -5,15 +5,13 @@ import { FaPlay } from "react-icons/fa";
 
 const Header = () => {
   return (
-    <div> 
+    <div>
       <div
-        className="relative w-full h-[40rem]"
+        className="relative w-full h-[40rem] bg-bottom"
         style={{
           backgroundImage: `url(${assets.header})`,
-          backgroundSize: "cover",
         }}
       >
-        
         {/* Navbar */}
         <div className="absolute top-0 left-0 w-full z-60">
           <Navbar />
@@ -22,7 +20,6 @@ const Header = () => {
         {/* Content */}
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full max-w-6xl px-4 z-10">
           <div className="flex flex-col md:flex-row items-center justify-between gap-8">
-            
             {/* Text block */}
             <div className="text-center md:text-left text-white max-w-xl space-y-4">
               <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold">
@@ -34,7 +31,6 @@ const Header = () => {
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 mt-6 justify-center md:justify-start">
-                
                 {/* Get Started Button */}
                 <button className="bg-green-500 hover:bg-green-600 text-white py-2 px-6 rounded-lg font-semibold transition duration-300">
                   Get Started
@@ -49,7 +45,6 @@ const Header = () => {
                     Watch Video
                   </span>
                 </button>
-
               </div>
             </div>
 
@@ -74,10 +69,8 @@ const Header = () => {
                 />
               </div>
             </div>
-
           </div>
         </div>
-
       </div>
     </div>
   );

@@ -56,20 +56,31 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       {isOpen && (
-        <div className="md:hidden mt-4 flex flex-col gap-4 bg-black p-4 rounded-lg shadow-lg absolute w-full left-0 top-full">
-          {navlinks.map((link) => (
-            <NavLink
-              key={link}
-              to={`/${link.toLowerCase().replace(/ /g, "")}`}
-              className="text-gray-300 font-medium hover:text-white transition duration-300"
-              onClick={() => setIsOpen(false)}
-            >
-              {link}
-            </NavLink>
-          ))}
-          <button className="bg-green-500 py-2 px-4 text-white rounded-lg font-semibold hover:bg-green-600 transition duration-300">
-            Sign Up
+        <div className="md:hidden fixed inset-0 bg-black/90 z-40 flex flex-col pt-20 px-4">
+          {/* Close Button */}
+          <button
+            onClick={() => setIsOpen(false)}
+            className="absolute top-4 right-4 text-white text-2xl z-50"
+          >
+            <FaTimes />
           </button>
+
+          {/* Menu Links */}
+          <div className="flex flex-col gap-6 mt-8">
+            {navlinks.map((link) => (
+              <NavLink
+                key={link}
+                to={`/${link.toLowerCase().replace(/ /g, "")}`}
+                className="text-gray-300 font-medium hover:text-white transition duration-300"
+                onClick={() => setIsOpen(false)}
+              >
+                {link}
+              </NavLink>
+            ))}
+            <button className="bg-green-500 py-2 px-4 text-white rounded-lg font-semibold hover:bg-green-600 transition duration-300">
+              Sign Up
+            </button>
+          </div>
         </div>
       )}
     </nav>
