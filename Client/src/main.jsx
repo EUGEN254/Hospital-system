@@ -2,17 +2,21 @@ import { createRoot } from "react-dom/client";
 import "./index.css";
 import App from "./App.jsx";
 import { BrowserRouter } from "react-router-dom";
+import assets from "./assets/assets"; // <--- important!
 
-// Artificial delay to see preloader (remove in production)
-const SHOW_PRELOADER_FOR = 3000; // 8 seconds - adjust as needed
+// Load your header image first
+const img = new Image();
+img.src = assets.header;
 
-const renderApp = () => {
+img.onload = () => {
+  // Hide preloader
+  const loader = document.querySelector(".loading-container");
+  if (loader) loader.style.display = "none";
+
+  // Render the app
   createRoot(document.getElementById("root")).render(
     <BrowserRouter>
       <App />
     </BrowserRouter>
   );
 };
-
-// Show preloader for specified time before rendering the app
-setTimeout(renderApp, SHOW_PRELOADER_FOR);
