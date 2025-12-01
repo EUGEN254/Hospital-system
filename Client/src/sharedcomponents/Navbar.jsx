@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import assets from "../assets/assets";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { FaBars, FaTimes } from "react-icons/fa";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const navigate = useNavigate();
+
+
   const navlinks = [
     "Home",
     "About-Us",
@@ -38,7 +41,9 @@ const Navbar = () => {
 
         {/* Sign Up button (desktop) */}
         <div className="hidden md:block">
-          <button className="bg-green-300 py-2 px-6 text-gray-500 rounded-lg shadow-md hover:bg-green-600 font-semibold transition duration-300">
+          <button 
+          onClick={()=>navigate('/sign-up')}
+          className="bg-green-300 py-2 px-6 text-gray-500 rounded-lg shadow-md hover:bg-green-600 font-semibold transition duration-300">
             Sign Up
           </button>
         </div>
