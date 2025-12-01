@@ -2,10 +2,13 @@ import { createRoot } from "react-dom/client";
 import "./index.css";
 import App from "./App.jsx";
 import { BrowserRouter } from "react-router-dom";
+import { HealthCareContextProvider } from "./sharedcontext/healthCareContext.jsx";
+import { GoogleOAuthProvider } from "@react-oauth/google";
 
-// Minimum time to show preloader
 const MIN_PRELOAD_TIME = 2000;
 const startTime = Date.now();
+
+const GOOGLE_CLIENT_ID = import.meta.env.VITE_GOOGLE_CLIENT_ID;
 
 window.addEventListener("load", () => {
   const elapsed = Date.now() - startTime;
@@ -16,9 +19,13 @@ window.addEventListener("load", () => {
     if (loader) loader.style.display = "none";
 
     createRoot(document.getElementById("root")).render(
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
+      <GoogleOAuthProvider clientId={GOOGLE_CLIENT_ID}>
+        <BrowserRouter>
+          <HealthCareContextProvider>
+            <App />
+          </HealthCareContextProvider>
+        </BrowserRouter>
+      </GoogleOAuthProvider>
     );
   }, remaining > 0 ? remaining : 0);
 });
