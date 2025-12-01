@@ -48,7 +48,9 @@ const LoginSignUp = () => {
           ? { email, password }
           : { fullName, email, password, termsAccepted };
 
-      const response = await axios.post(endpoint, payload, { withCredentials: true });
+      const response = await axios.post(endpoint, payload, {
+        withCredentials: true,
+      });
 
       if (response.data.success) {
         toast.success(response.data.message);
@@ -146,7 +148,9 @@ const LoginSignUp = () => {
               <img src={assets.logo} className="w-9 h-9" alt="logo" />
             </div>
             <h1 className="text-xl font-bold text-green-900">SmartCare</h1>
-            <p className="text-green-700 mt-1 text-sm">Your health, simplified</p>
+            <p className="text-green-700 mt-1 text-sm">
+              Your health, simplified
+            </p>
           </div>
 
           {/* Card */}
@@ -179,7 +183,9 @@ const LoginSignUp = () => {
             <form onSubmit={handleSubmit} className="space-y-3 text-sm">
               {isLogin === "signup" && (
                 <div>
-                  <label className="block font-medium text-gray-700 mb-1">Full Name</label>
+                  <label className="block font-medium text-gray-700 mb-1">
+                    Full Name
+                  </label>
                   <div className="relative">
                     <FiUser className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
                     <input
@@ -194,7 +200,9 @@ const LoginSignUp = () => {
               )}
 
               <div>
-                <label className="block font-medium text-gray-700 mb-1">Email Address</label>
+                <label className="block font-medium text-gray-700 mb-1">
+                  Email Address
+                </label>
                 <div className="relative">
                   <FiMail className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
                   <input
@@ -208,7 +216,9 @@ const LoginSignUp = () => {
               </div>
 
               <div>
-                <label className="block font-medium text-gray-700 mb-1">Password</label>
+                <label className="block font-medium text-gray-700 mb-1">
+                  Password
+                </label>
                 <div className="relative">
                   <FiLock className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
                   <input
@@ -223,7 +233,9 @@ const LoginSignUp = () => {
 
               {isLogin === "signup" && (
                 <div>
-                  <label className="block font-medium text-gray-700 mb-1">Confirm Password</label>
+                  <label className="block font-medium text-gray-700 mb-1">
+                    Confirm Password
+                  </label>
                   <div className="relative">
                     <FiLock className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
                     <input
@@ -239,7 +251,11 @@ const LoginSignUp = () => {
 
               {isLogin === "login" && (
                 <div className="flex justify-end">
-                  <button className="text-xs text-green-800 hover:text-green-900 hover:underline">
+                  <button
+                    type="button"
+                    onClick={() => navigate("/reset-password")}
+                    className="text-xs text-green-800 hover:text-green-900 hover:underline"
+                  >
                     Forgot password?
                   </button>
                 </div>
@@ -257,9 +273,13 @@ const LoginSignUp = () => {
                   />
                   <span>
                     By continuing, you agree to our{" "}
-                    <button className="text-green-900 hover:text-green-800 font-medium">Terms</button>{" "}
+                    <button className="text-green-900 hover:text-green-800 font-medium">
+                      Terms
+                    </button>{" "}
                     &{" "}
-                    <button className="text-green-900 hover:text-green-800 font-medium">Privacy Policy</button>
+                    <button className="text-green-900 hover:text-green-800 font-medium">
+                      Privacy Policy
+                    </button>
                   </span>
                 </div>
               )}
@@ -292,7 +312,13 @@ const LoginSignUp = () => {
                     ></path>
                   </svg>
                 )}
-                {isLogin === "login" ? (loading ? "Signing In..." : "Sign In") : (loading ? "Creating..." : "Create Account")}
+                {isLogin === "login"
+                  ? loading
+                    ? "Signing In..."
+                    : "Sign In"
+                  : loading
+                  ? "Creating..."
+                  : "Create Account"}
               </button>
             </form>
 
