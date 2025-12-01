@@ -6,17 +6,20 @@ import {
   registerUser,
   verifyResetOtp,
   ResetPassword,
+  fetchCurrentUser,
 } from "../controllers/users.js";
 import {
   loginLimiter,
   otpRequestLimiter,
   otpVerifyLimiter,
 } from "../middleware/rateLimiter.js";
+import userAuth from "../middleware/userAuth.js";
 
 const userRouter = express.Router();
 
 userRouter.post("/register", registerUser);
 userRouter.post("/google-login", googleLoginUser);
+userRouter.get("/get-user",userAuth,fetchCurrentUser)
 userRouter.post("/login", loginLimiter, loginUser);
 
 // Password routes

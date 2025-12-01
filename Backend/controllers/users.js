@@ -181,6 +181,23 @@ const googleLoginUser = async (req, res) => {
   }
 };
 
+const fetchCurrentUser = async (req, res) => {
+  try {
+    if (!req.user) {
+      return res.status(401).json({
+        success: false,
+        message: "Not Authorised",
+      });
+    }
+
+    const safeUser = req.user;
+    res.json({ success: true, user: safeUser });
+  } catch (error) {
+    console.error("Error in getUser", error);
+    res.status(500).json({ success: false, message: "Server error" });
+  }
+};
+
 /* =========================
    SEND RESET OTP - UPDATED
 ========================= */
@@ -281,6 +298,7 @@ const ResetPassword = async (req, res) => {
 
 export {
   registerUser,
+  fetchCurrentUser,
   ResetPassword,
   loginUser,
   googleLoginUser,

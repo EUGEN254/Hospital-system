@@ -10,7 +10,26 @@ export const HealthCareContextProvider = ({ children }) => {
   const [user, setUser] = useState(null);
 
   //fetch current user details
-  const fetchCurrentUser = async (params) => {};
+  const fetchCurrentUser = async () => {
+    try {
+      const response = await axios.get(`${backendUrl}/api/users/get-user`, {
+        withCredentials: true,
+      });
+
+      if (response.data.success) {
+        setUser(response.data.user);
+      } else {
+        setUser(null);
+        return null;
+      }
+    } catch (error) {
+      console.error("Error fetching user", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchCurrentUser();
+  }, []);
 
   const value = {
     backendUrl,

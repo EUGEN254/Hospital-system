@@ -3,11 +3,19 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import LandingPage from "./sharedpages/LandingPage";
 import Footer from "./sharedcomponents/Footer";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import LoginSignUp from "./sharedpages/LoginSignUp";
 import ForgotPassword from "./sharedpages/ForgotPassword";
+import PatientHome from "./patients/pages/PatientHome";
+import Dashboard from "./patients/pages/Dashboard";
+import Settings from "./patients/pages/Settings";
+import Doctors from "./patients/pages/Doctors";
 
 const App = () => {
+  const location = useLocation();
+
+  // check if the current path start with /patient
+  const isPatientRoute = location.pathname.startsWith("/patient");
   return (
     <>
       <ToastContainer
@@ -27,9 +35,21 @@ const App = () => {
           <Route path="/" element={<LandingPage />} />
           <Route path="/sign-up" element={<LoginSignUp />} />
           <Route path="/reset-password" element={<ForgotPassword />} />
+
+          {/* patient routes */}
+          <Route path="/patient-dashboard" element={<PatientHome />}>
+            <Route index element={<Dashboard />} />
+            <Route path="doctors" element={<Doctors />} />
+            <Route path="settings" element={<Settings />} />
+          </Route>
+
+          {/* doctor route */}
+
+          {/* admin routes */}
         </Routes>
 
-        <Footer />
+        {/* only show footer if not parient route */}
+        {!isPatientRoute && <Footer />}
       </div>
     </>
   );

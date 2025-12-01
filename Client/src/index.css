@@ -3,7 +3,7 @@
 
 *{
   font-family: "Poppins", sans-serif;
-  font-size: 16px;
+  font-size: 15px;
 }
 
 
@@ -15,3 +15,106 @@
   display: none;
 }
 
+
+
+/* calendar-styles.css */
+.custom-calendar {
+  background-color: #065f46 !important; /* green-800 */
+  border-radius: 0.5rem;
+  padding: 1rem;
+  width: 100%;
+}
+
+.custom-calendar .react-calendar__viewContainer {
+  background-color: #065f46;
+}
+
+.custom-calendar .react-calendar__month-view {
+  background-color: #065f46;
+}
+
+.custom-calendar .react-calendar__tile {
+  background-color: #065f46;
+  color: white;
+}
+
+.custom-calendar .react-calendar__navigation {
+  background-color: #065f46;
+  color: white;
+}
+
+.custom-calendar .react-calendar__navigation button {
+  background-color: #065f46;
+  color: white;
+}
+
+.custom-calendar .react-calendar__month-view__weekdays {
+  background-color: #065f46;
+  color: white;
+}
+
+
+
+
+
+/* index.css - Doctor Theme Scrollbar */
+.doctor-scrollbar {
+  scrollbar-width: thin; /* For Firefox */
+  scrollbar-color: #10b981 #f3f4f6; /* green-500 to gray-100 */
+}
+
+/* For Chrome, Edge, Safari */
+.doctor-scrollbar::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+.doctor-scrollbar::-webkit-scrollbar-track {
+  background: #f3f4f6; /* gray-100 */
+  border-radius: 10px;
+  margin: 4px;
+}
+
+.doctor-scrollbar::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, #10b981, #059669); /* green-500 to green-600 */
+  border-radius: 10px;
+  border: 2px solid #f3f4f6; /* Creates padding effect */
+}
+
+.doctor-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to bottom, #059669, #047857); /* green-600 to green-700 */
+}
+
+.doctor-scrollbar::-webkit-scrollbar-corner {
+  background: #f3f4f6; /* gray-100 */
+}
+
+/* Doctor Theme Variants */
+
+/* White Background Version */
+.doctor-scrollbar-light {
+  scrollbar-color: #10b981 #ffffff;
+}
+
+.doctor-scrollbar-light::-webkit-scrollbar-track {
+  background: #ffffff;
+  border-radius: 10px;
+}
+
+.doctor-scrollbar-light::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, #34d399, #10b981); /* green-400 to green-500 */
+  border: 2px solid #ffffff;
+}
+
+
+
+/* Responsive scrollbar */
+@media (max-width: 768px) {
+  .doctor-scrollbar::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  .doctor-scrollbar-medical::-webkit-scrollbar {
+    width: 5px;
+  }
+}

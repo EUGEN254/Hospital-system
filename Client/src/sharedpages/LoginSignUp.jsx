@@ -72,7 +72,7 @@ const LoginSignUp = () => {
               navigate("/nurse/dashboard");
               break;
             case "patient":
-              navigate("/patient/dashboard");
+              navigate("/patient-dashboard");
               break;
             default:
               navigate("/dashboard");
@@ -100,22 +100,28 @@ const LoginSignUp = () => {
         { withCredentials: true }
       );
 
-      if (res.data.success) {
-        setUser(res.data.user);
-        toast.success("Logged in with Google!");
+      console.log(res);
 
-        switch (res.data.user.role) {
-          case "doctor":
-            navigate("/doctor/dashboard");
-            break;
-          case "nurse":
-            navigate("/nurse/dashboard");
-            break;
-          case "patient":
-            navigate("/patient/dashboard");
-            break;
-          default:
-            navigate("/dashboard");
+      if (res.data.success) {
+        toast.success("Logged in with Google!");
+        if (res.data.user) {
+          setUser(res.data.user);
+
+          switch (res.data.user.role) {
+            case "doctor":
+              navigate("/doctor/dashboard");
+              break;
+            case "nurse":
+              navigate("/nurse/dashboard");
+              break;
+            case "patient":
+              navigate("/patient-dashboard");
+              break;
+            default:
+              navigate("/dashboard");
+          }
+        } else {
+          await fetchCurrentUser();
         }
       } else {
         toast.error(res.data.message);
