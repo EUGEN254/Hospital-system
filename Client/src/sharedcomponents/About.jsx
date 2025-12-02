@@ -14,11 +14,11 @@ const About = () => {
   return (
     <div className="flex flex-col md:flex-row items-center max-w-6xl mx-auto my-12 md:my-20 px-4 justify-between gap-8 md:gap-10">
       {/* Left: Doctor Image + Floating Badge */}
-      <div className="relative flex-shrink-0 w-full md:w-auto">
+      <div className="relative shrink-0 w-full md:w-auto">
         <img
           src={assets.doctor1}
           alt="doctor"
-          className="w-64 max-w-xs mx-auto md:w-96 h-64 sm:h-48 md:h-[38rem] rounded-lg"
+          className="w-64 max-w-xs mx-auto md:w-96 h-64 sm:h-48 md:h-152 rounded-lg"
         />
 
         {/* Floating 25+ years badge - kept your original styling */}

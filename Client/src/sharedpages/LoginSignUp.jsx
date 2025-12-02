@@ -134,7 +134,7 @@ const LoginSignUp = () => {
   };
 
   return (
-    <div className="min-h-[85vh] bg-gradient-to-b from-green-50 to-green-100 flex flex-col">
+    <div className="min-h-[85vh] bg-linear-to-b from-green-50 to-green-100 flex flex-col">
       {/* Navbar */}
       <header className="px-6 py-3">
         <Link

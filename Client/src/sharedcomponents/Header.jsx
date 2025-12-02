@@ -10,7 +10,7 @@ const Header = () => {
   return (
     <div>
       <div
-        className="relative w-full h-[40rem] bg-bottom"
+        className="relative w-full h-160 bg-bottom"
         style={{
           backgroundImage: `url(${assets.header})`,
         }}
@@ -60,7 +60,7 @@ const Header = () => {
             </div>
 
             {/* Doctor Image */}
-            <div className="relative flex-shrink-0 mt-8 md:mt-0">
+            <div className="relative shrink-0 mt-8 md:mt-0">
               {/* Decorative Circle */}
               <div className="absolute -top-6 -left-6 w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-green-500 opacity-30 z-0"></div>
 
@@ -87,7 +87,7 @@ const Header = () => {
       {/* show vedio */}
       {showVedio && (
         <div
-          className="fixed inset-0 flex items-center justify-center bg-black/40 backdrop-blur-sm z-[400] p-4"
+          className="fixed inset-0 flex items-center justify-center bg-black/40 backdrop-blur-sm z-400 p-4"
           onClick={() => setShowVedio(false)} // overlay click
         >
           <div
@@ -97,7 +97,7 @@ const Header = () => {
             {/* Close Button */}
             <span
               onClick={() => setShowVedio(false)}
-              className="absolute right-1 -top-6 cursor-pointer text-3xl font-bold text-white z-[500]"
+              className="absolute right-1 -top-6 cursor-pointer text-3xl font-bold text-white z-500"
             >
               ×
             </span>

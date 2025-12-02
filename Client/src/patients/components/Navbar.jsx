@@ -35,7 +35,7 @@ const Navbar = () => {
           <span className="font-semibold text-gray-800">
             {user?.fullName}
           </span>
-          <p className=" text-gray-500">{user?.email}</p>
+          <p className="text-xs text-gray-500">{user?.email}</p>
         </div>
       </div>
 
@@ -49,7 +49,7 @@ const Navbar = () => {
             }`}
             end={nav.name === "Dashboard"} // exact match for Dashboard
             className={({ isActive }) =>
-              `flex items-center text-4xl gap-2 px-4 py-2 font-medium text-gray-700 hover:text-white hover:bg-green-700 transition-colors rounded-3xl ${
+              `flex items-center text-xs gap-2 px-4 py-2 font-medium text-gray-700 hover:text-white hover:bg-green-700 transition-colors rounded-3xl ${
                 isActive ? "bg-green-700 text-white" : ""
               }`
             }

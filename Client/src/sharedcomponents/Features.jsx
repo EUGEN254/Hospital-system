@@ -10,20 +10,20 @@ const Features = () => {
       description:
         "Easily schedule your doctor appointments online without any hassle.",
       icon: (
-        <FaCalendarCheck className="text-green-500 w-6 h-6 flex-shrink-0" />
+        <FaCalendarCheck className="text-green-500 w-6 h-6 shrink-0" />
       ),
     },
     {
       title: "Scheduling reminders",
       description:
         "Get timely reminders for your appointments and medication schedules.",
-      icon: <FaBell className="text-green-500 w-6 h-6 flex-shrink-0" />,
+      icon: <FaBell className="text-green-500 w-6 h-6 shrink-0" />,
     },
     {
       title: "Talking to a doctor",
       description:
         "Consult with our experienced doctors via chat or video call anytime.",
-      icon: <FaComments className="text-green-500 w-6 h-6 flex-shrink-0" />,
+      icon: <FaComments className="text-green-500 w-6 h-6 shrink-0" />,
     },
   ];
 
