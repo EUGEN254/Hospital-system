@@ -1,7 +1,9 @@
 import React from "react";
 import { FaCalendarCheck, FaBell, FaComments } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 const Features = () => {
+  const navigate = useNavigate()
   const features = [
     {
       title: "Booking an appointment",
@@ -32,13 +34,15 @@ const Features = () => {
         <p className="text-2xl md:text-3xl font-bold text-gray-800">
           Explore Our Features
         </p>
-        <p className="text-gray-600 text-md md:text-lg max-w-2xl">
+        <p className="text-gray-600 text-md md:text-1xl max-w-2xl">
           Our platform is designed to make your healthcare experience smooth,
           convenient, and accessible. Here are some of the key features we
           offer:
         </p>
         <button className="group bg-green-100 px-6 py-2 rounded-lg inline-block">
-          <span className="text-green-600 font-semibold transition-transform duration-300 group-hover:translate-x-2">
+          <span 
+          onClick={()=>navigate('/more-features')}
+          className="text-green-600 font-semibold transition-transform duration-300 group-hover:translate-x-2">
             Learn More &rarr;
           </span>
         </button>

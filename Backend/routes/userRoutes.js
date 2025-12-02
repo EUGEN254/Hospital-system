@@ -7,6 +7,7 @@ import {
   verifyResetOtp,
   ResetPassword,
   fetchCurrentUser,
+  logout,
 } from "../controllers/users.js";
 import {
   loginLimiter,
@@ -21,6 +22,7 @@ userRouter.post("/register", registerUser);
 userRouter.post("/google-login", googleLoginUser);
 userRouter.get("/get-user",userAuth,fetchCurrentUser)
 userRouter.post("/login", loginLimiter, loginUser);
+userRouter.post("/logout", logout);
 
 // Password routes
 userRouter.post("/send-reset-otp", otpRequestLimiter, sendResetOtp);

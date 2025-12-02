@@ -1,7 +1,9 @@
 import React from "react";
 import assets from "../assets/assets";
+import { useNavigate } from "react-router-dom";
 
 const About = () => {
+  const navigate = useNavigate()
   const servicesOffered = [
     "Emergency Care",
     "Surgery",
@@ -31,7 +33,7 @@ const About = () => {
         <h3 className="text-2xl md:text-3xl font-bold text-gray-800">About Us</h3>
 
         {/* Description - kept your original size */}
-        <p className="text-gray-600 text-base md:text-lg leading-relaxed">
+        <p className="text-gray-600 text-base md:text-1xl leading-relaxed">
           We provide world-class healthcare services, combining modern
           technology with compassionate care. Our experienced doctors and staff
           are committed to ensuring the well-being of every patient who walks
@@ -52,7 +54,9 @@ const About = () => {
         </div>
 
         {/* Button - kept your original styling */}
-        <button className="bg-green-500 hover:bg-green-600 text-white py-3 px-8 rounded-lg font-semibold text-base md:text-lg transition duration-300 w-full md:w-auto">
+        <button 
+        onClick={()=>navigate('/contact-us')}
+        className="bg-green-500 hover:bg-green-600 text-white py-3 px-8 rounded-lg font-semibold text-base md:text-lg transition duration-300 w-full md:w-auto">
           Explore More
         </button>
       </div>

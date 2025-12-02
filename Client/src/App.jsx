@@ -10,6 +10,8 @@ import PatientHome from "./patients/pages/PatientHome";
 import Dashboard from "./patients/pages/Dashboard";
 import Settings from "./patients/pages/Settings";
 import Doctors from "./patients/pages/Doctors";
+import ContactUs from "./sharedpages/ContactUs";
+import MoreFeatures from "./sharedpages/MoreFeatures";
 
 const App = () => {
   const location = useLocation();
@@ -35,6 +37,8 @@ const App = () => {
           <Route path="/" element={<LandingPage />} />
           <Route path="/sign-up" element={<LoginSignUp />} />
           <Route path="/reset-password" element={<ForgotPassword />} />
+          <Route path="/contact-us" element={<ContactUs />} />
+          <Route path="/more-features" element={<MoreFeatures />} />
 
           {/* patient routes */}
           <Route path="/patient-dashboard" element={<PatientHome />}>

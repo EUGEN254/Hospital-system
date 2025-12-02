@@ -8,6 +8,7 @@ export const HealthCareContext = createContext();
 export const HealthCareContextProvider = ({ children }) => {
   const backendUrl = import.meta.env.VITE_BACKEND_URL;
   const [user, setUser] = useState(null);
+  const navigate = useNavigate();
 
   //fetch current user details
   const fetchCurrentUser = async () => {
@@ -27,12 +28,37 @@ export const HealthCareContextProvider = ({ children }) => {
     }
   };
 
+  // logout user
+  const logout = async () => {
+    try {
+      const res = await axios.post(
+        `${backendUrl}/api/users/logout`,
+        {},
+        {withCredentials:true}
+      )
+
+      if(res.data.success){
+        toast.success(res.data.message)
+        setUser(null);
+        navigate("/");
+      }else{
+        toast.error(res.data.message)
+      }
+    } catch (error) {
+      toast.error(
+        error?.res?.data?.message || error.message || "failed to logout"
+      )
+    }
+    
+  }
+
   useEffect(() => {
     fetchCurrentUser();
   }, []);
 
   const value = {
     backendUrl,
+    logout,
     user,
     setUser,
     fetchCurrentUser,

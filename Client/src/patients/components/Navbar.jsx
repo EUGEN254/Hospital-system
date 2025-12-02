@@ -20,7 +20,7 @@ const Navbar = () => {
   ];
 
   const [showProfile, setShowProfile] = useState(false);
-  const { user } = useHealthcare();
+  const { user,logout } = useHealthcare();
 
   return (
     <nav className="w-full bg-white shadow-md px-6 py-3 flex items-center justify-between">
@@ -102,7 +102,7 @@ const Navbar = () => {
                 </NavLink>
                 <button
                   className="w-full text-left px-4 py-2 text-gray-700 hover:bg-green-50"
-                  onClick={() => console.log("Logout")}
+                  onClick={logout}
                 >
                   Logout
                 </button>
