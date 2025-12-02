@@ -19,7 +19,7 @@ const userAuth = async (req, res, next) => {
       });
     }
 
-    const user = await User.findById(decode.id).select("-password");
+    const user = await User.findById(decode.userId).select("-password");
     if (!user) {
       return res.status(401).json({
         success: false,
