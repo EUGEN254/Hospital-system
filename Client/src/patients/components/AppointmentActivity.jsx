@@ -1,102 +1,85 @@
 import React from "react";
-import { Activity, TrendingUp, TrendingDown, CheckCircle, XCircle, Clock } from "lucide-react";
+import { TrendingUp, TrendingDown, MoreVertical } from "lucide-react";
 
 const AppointmentActivity = () => {
-  const activityData = [
-    { hour: "8 AM", appointments: 2 },
-    { hour: "9 AM", appointments: 5 },
-    { hour: "10 AM", appointments: 3 },
-    { hour: "11 AM", appointments: 4 },
-    { hour: "12 PM", appointments: 6 },
-    { hour: "1 PM", appointments: 3 },
-    { hour: "2 PM", appointments: 4 },
-    { hour: "3 PM", appointments: 5 },
-    { hour: "4 PM", appointments: 2 },
-    { hour: "5 PM", appointments: 1 },
+  const data = [
+    { day: "Mon", appointments: 12, trend: "up" },
+    { day: "Tue", appointments: 18, trend: "up" },
+    { day: "Wed", appointments: 15, trend: "down" },
+    { day: "Thu", appointments: 22, trend: "up" },
+    { day: "Fri", appointments: 20, trend: "down" },
+    { day: "Sat", appointments: 8, trend: "down" },
+    { day: "Sun", appointments: 4, trend: "up" }
   ];
 
-  const stats = [
-    { label: "Completed", value: 15, icon: CheckCircle, color: "text-green-500", bgColor: "bg-green-100" },
-    { label: "No-show", value: 2, icon: XCircle, color: "text-red-500", bgColor: "bg-red-100" },
-    { label: "Rescheduled", value: 3, icon: Clock, color: "text-yellow-500", bgColor: "bg-yellow-100" }
-  ];
-
-  const maxAppointments = Math.max(...activityData.map(d => d.appointments));
+  const maxAppointments = Math.max(...data.map(d => d.appointments));
 
   return (
     <div className="space-y-6">
-      {/* Activity Header */}
-      <div className="flex items-center justify-between">
-        <div>
-          <p className="text-sm text-gray-600">Today's Activity</p>
-          <p className="text-2xl font-bold text-gray-900">38 Appointments</p>
-        </div>
-        <div className="flex items-center text-green-600">
-          <TrendingUp className="w-5 h-5 mr-1" />
-          <span className="font-medium">+12%</span>
-        </div>
-      </div>
-
-      {/* Activity Chart */}
-      <div>
-        <div className="flex items-end justify-between h-32 mb-2">
-          {activityData.map((item, index) => {
-            const height = (item.appointments / maxAppointments) * 100;
-            return (
-              <div key={index} className="flex flex-col items-center">
-                <div
-                  className="w-6 bg-gradient-to-t from-blue-500 to-blue-300 rounded-t-lg"
-                  style={{ height: `${height}%` }}
-                ></div>
-                <span className="text-xs text-gray-500 mt-1">{item.hour}</span>
-              </div>
-            );
-          })}
-        </div>
-      </div>
-
-      {/* Stats */}
-      <div className="space-y-3">
-        {stats.map((stat, index) => {
-          const Icon = stat.icon;
-          return (
-            <div key={index} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-              <div className="flex items-center">
-                <div className={`p-2 ${stat.bgColor} rounded-lg mr-3`}>
-                  <Icon className={`w-5 h-5 ${stat.color}`} />
-                </div>
-                <div>
-                  <p className="font-medium text-gray-900">{stat.label}</p>
-                  <p className="text-sm text-gray-600">Today</p>
-                </div>
-              </div>
-              <p className="text-lg font-bold text-gray-900">{stat.value}</p>
+      {/* Stats Overview */}
+      <div className="grid grid-cols-2 gap-4">
+        <div className="bg-gray-50 p-4 rounded-lg">
+          <p className="text-sm text-gray-600">Weekly Average</p>
+          <div className="flex items-center mt-1">
+            <p className="text-2xl font-bold text-gray-900">14.1</p>
+            <div className="ml-2 flex items-center text-emerald-600 text-sm">
+              <TrendingUp className="w-4 h-4 mr-1" />
+              <span>+12%</span>
             </div>
-          );
-        })}
-      </div>
-
-      {/* Peak Hours */}
-      <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl p-4">
-        <h3 className="font-semibold text-gray-900 mb-2">Peak Hours</h3>
-        <div className="flex items-center justify-between">
-          <div>
-            <p className="text-2xl font-bold text-gray-900">9 AM - 12 PM</p>
-            <p className="text-sm text-gray-600">Most appointments</p>
           </div>
-          <Activity className="w-8 h-8 text-blue-600" />
+        </div>
+        <div className="bg-gray-50 p-4 rounded-lg">
+          <p className="text-sm text-gray-600">Peak Day</p>
+          <div className="flex items-center mt-1">
+            <p className="text-2xl font-bold text-gray-900">22</p>
+            <span className="ml-2 text-sm text-gray-600">on Thursday</span>
+          </div>
         </div>
       </div>
 
-      {/* Quick Actions */}
-      <div className="mt-4">
-        <h3 className="font-semibold text-gray-900 mb-3">Quick Actions</h3>
-        <div className="grid grid-cols-2 gap-2">
-          <button className="p-3 bg-white border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors text-sm font-medium">
-            Send Reminders
-          </button>
-          <button className="p-3 bg-white border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors text-sm font-medium">
-            Generate Report
+      {/* Bar Chart */}
+      <div className="space-y-3">
+        {data.map((item, index) => (
+          <div key={index} className="flex items-center">
+            <div className="w-12 text-sm text-gray-600 font-medium">{item.day}</div>
+            <div className="flex-1 ml-4">
+              <div className="relative h-8">
+                <div 
+                  className="absolute h-full bg-gradient-to-r from-blue-500 to-blue-600 rounded-lg transition-all duration-300"
+                  style={{ width: `${(item.appointments / maxAppointments) * 100}%` }}
+                >
+                  <div className="absolute right-2 top-1/2 transform -translate-y-1/2 text-xs text-white font-medium">
+                    {item.appointments}
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="w-8 ml-2 flex justify-center">
+              {item.trend === "up" ? (
+                <TrendingUp className="w-4 h-4 text-emerald-500" />
+              ) : (
+                <TrendingDown className="w-4 h-4 text-red-500" />
+              )}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Legend */}
+      <div className="pt-4 border-t border-gray-200">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center space-x-4">
+            <div className="flex items-center">
+              <div className="w-3 h-3 bg-blue-500 rounded mr-2"></div>
+              <span className="text-sm text-gray-600">Appointments</span>
+            </div>
+            <div className="flex items-center">
+              <TrendingUp className="w-4 h-4 text-emerald-500 mr-1" />
+              <span className="text-sm text-gray-600">Increase</span>
+            </div>
+          </div>
+          <button className="p-1 hover:bg-gray-100 rounded">
+            <MoreVertical className="w-5 h-5 text-gray-400" />
           </button>
         </div>
       </div>

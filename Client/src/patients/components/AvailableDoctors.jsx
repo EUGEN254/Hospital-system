@@ -1,5 +1,5 @@
 import React from "react";
-import { User, Phone, Mail, Clock, MessageCircle, Star, CheckCircle } from "lucide-react";
+import { User, Phone, Mail, Clock, Star, MessageCircle, CheckCircle, MoreVertical } from "lucide-react";
 
 const AvailableDoctors = () => {
   const doctors = [
@@ -12,7 +12,8 @@ const AvailableDoctors = () => {
       rating: 4.8,
       patients: 12,
       phone: "(555) 123-4567",
-      email: "sarah.j@hospital.com"
+      email: "sarah.j@hospital.com",
+      nextAvailable: "11:30 AM"
     },
     {
       id: 2,
@@ -23,7 +24,8 @@ const AvailableDoctors = () => {
       rating: 4.9,
       patients: 8,
       phone: "(555) 234-5678",
-      email: "m.chen@hospital.com"
+      email: "m.chen@hospital.com",
+      nextAvailable: "3:15 PM"
     },
     {
       id: 3,
@@ -34,7 +36,8 @@ const AvailableDoctors = () => {
       rating: 4.7,
       patients: 15,
       phone: "(555) 345-6789",
-      email: "e.wilson@hospital.com"
+      email: "e.wilson@hospital.com",
+      nextAvailable: "Now"
     },
     {
       id: 4,
@@ -45,7 +48,8 @@ const AvailableDoctors = () => {
       rating: 4.6,
       patients: 6,
       phone: "(555) 456-7890",
-      email: "r.davis@hospital.com"
+      email: "r.davis@hospital.com",
+      nextAvailable: "Tomorrow"
     },
     {
       id: 5,
@@ -56,110 +60,230 @@ const AvailableDoctors = () => {
       rating: 4.9,
       patients: 10,
       phone: "(555) 567-8901",
-      email: "l.martinez@hospital.com"
+      email: "l.martinez@hospital.com",
+      nextAvailable: "1:45 PM"
     }
   ];
 
-  const getStatusColor = (status) => {
+  const getStatusBadge = (status) => {
     switch (status) {
       case 'available':
-        return 'bg-green-100 text-green-800';
+        return (
+          <div className="flex items-center">
+            <div className="w-2 h-2 rounded-full bg-green-500 mr-2"></div>
+            <span className="text-xs font-medium text-green-700">Available</span>
+          </div>
+        );
       case 'busy':
-        return 'bg-yellow-100 text-yellow-800';
+        return (
+          <div className="flex items-center">
+            <div className="w-2 h-2 rounded-full bg-amber-500 mr-2"></div>
+            <span className="text-xs font-medium text-amber-700">Busy</span>
+          </div>
+        );
       case 'offline':
-        return 'bg-gray-100 text-gray-800';
+        return (
+          <div className="flex items-center">
+            <div className="w-2 h-2 rounded-full bg-gray-400 mr-2"></div>
+            <span className="text-xs font-medium text-gray-700">Offline</span>
+          </div>
+        );
       default:
-        return 'bg-gray-100 text-gray-800';
+        return <span className="text-xs text-gray-700">{status}</span>;
     }
   };
 
+  const getRatingStars = (rating) => {
+    const stars = [];
+    const fullStars = Math.floor(rating);
+    const hasHalfStar = rating % 1 >= 0.5;
+
+    for (let i = 0; i < fullStars; i++) {
+      stars.push(<Star key={`full-${i}`} className="w-3 h-3 fill-yellow-400 text-yellow-400" />);
+    }
+
+    if (hasHalfStar) {
+      stars.push(<Star key="half" className="w-3 h-3 fill-yellow-400 text-yellow-400" />);
+    }
+
+    const emptyStars = 5 - stars.length;
+    for (let i = 0; i < emptyStars; i++) {
+      stars.push(<Star key={`empty-${i}`} className="w-3 h-3 text-gray-300" />);
+    }
+
+    return stars;
+  };
+
   return (
-    <div>
-      {/* Quick Stats */}
-      <div className="grid grid-cols-3 gap-4 mb-6">
-        <div className="bg-blue-50 p-4 rounded-lg">
-          <p className="text-sm text-gray-600">On Duty</p>
-          <p className="text-2xl font-bold text-gray-900">3</p>
+    <div className="space-y-5">
+      {/* Header */}
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between">
+        <div>
+          <h3 className="text-base font-semibold text-gray-900">Available Doctors</h3>
+          <p className="text-xs text-gray-600 mt-0.5">Real-time doctor availability</p>
         </div>
-        <div className="bg-green-50 p-4 rounded-lg">
-          <p className="text-sm text-gray-600">Available</p>
-          <p className="text-2xl font-bold text-gray-900">2</p>
-        </div>
-        <div className="bg-purple-50 p-4 rounded-lg">
-          <p className="text-sm text-gray-600">Avg. Rating</p>
-          <p className="text-2xl font-bold text-gray-900">4.8</p>
+        <div className="mt-2 sm:mt-0">
+          <button className="flex items-center px-3 py-1.5 bg-blue-50 hover:bg-blue-100 text-blue-600 text-xs font-medium rounded-lg transition-colors duration-150">
+            <Clock className="w-3 h-3 mr-1.5" />
+            Refresh Status
+          </button>
         </div>
       </div>
 
-      {/* Doctors List */}
-      <div className="space-y-4">
-        {doctors.map((doctor) => (
-          <div
-            key={doctor.id}
-            className="border border-gray-200 rounded-xl p-4 hover:bg-gray-50 transition-colors"
-          >
-            <div className="flex items-start justify-between">
-              <div className="flex items-start space-x-4">
-                <div className="relative">
-                  <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white font-bold">
-                    {doctor.name.split(' ').map(n => n[0]).join('')}
-                  </div>
-                  <div className={`absolute -top-1 -right-1 w-3 h-3 rounded-full border-2 border-white ${
-                    doctor.status === 'available' ? 'bg-green-500' : 
-                    doctor.status === 'busy' ? 'bg-yellow-500' : 'bg-gray-400'
-                  }`}></div>
-                </div>
-                <div className="flex-1">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <h3 className="font-bold text-gray-900">{doctor.name}</h3>
-                      <p className="text-blue-600 font-medium">{doctor.specialty}</p>
-                    </div>
-                    <span className={`px-3 py-1 rounded-full text-xs font-medium ${getStatusColor(doctor.status)}`}>
-                      {doctor.status.charAt(0).toUpperCase() + doctor.status.slice(1)}
-                    </span>
-                  </div>
-                  
-                  <div className="flex items-center mt-2 space-x-4">
-                    <div className="flex items-center text-sm text-gray-600">
-                      <Clock className="w-4 h-4 mr-1" />
-                      {doctor.availability}
-                    </div>
-                    <div className="flex items-center text-sm text-gray-600">
-                      <User className="w-4 h-4 mr-1" />
-                      {doctor.patients} patients
-                    </div>
-                    <div className="flex items-center text-sm text-yellow-600">
-                      <Star className="w-4 h-4 mr-1 fill-current" />
-                      {doctor.rating}
-                    </div>
-                  </div>
+      {/* Table */}
+      <div className="bg-white border border-gray-200 rounded-lg overflow-hidden">
+        {/* Table Header */}
+        <div className="bg-gray-50 px-4 py-3 border-b border-gray-200">
+          <div className="grid grid-cols-12 gap-3">
+            <div className="col-span-4">
+              <span className="text-xs font-semibold text-gray-700 uppercase tracking-wider">Doctor</span>
+            </div>
+            <div className="col-span-2">
+              <span className="text-xs font-semibold text-gray-700 uppercase tracking-wider">Specialty</span>
+            </div>
+            <div className="col-span-2">
+              <span className="text-xs font-semibold text-gray-700 uppercase tracking-wider">Status</span>
+            </div>
+            <div className="col-span-2">
+              <span className="text-xs font-semibold text-gray-700 uppercase tracking-wider">Rating</span>
+            </div>
+            <div className="col-span-2">
+              <span className="text-xs font-semibold text-gray-700 uppercase tracking-wider">Actions</span>
+            </div>
+          </div>
+        </div>
 
-                  <div className="flex items-center mt-3 space-x-4">
-                    <a href={`tel:${doctor.phone}`} className="flex items-center text-sm text-gray-600 hover:text-blue-600">
-                      <Phone className="w-4 h-4 mr-1" />
-                      Call
-                    </a>
-                    <a href={`mailto:${doctor.email}`} className="flex items-center text-sm text-gray-600 hover:text-blue-600">
-                      <Mail className="w-4 h-4 mr-1" />
-                      Email
-                    </a>
-                    <button className="flex items-center text-sm text-gray-600 hover:text-blue-600">
-                      <MessageCircle className="w-4 h-4 mr-1" />
-                      Message
+        {/* Table Body */}
+        <div className="divide-y divide-gray-100">
+          {doctors.map((doctor) => (
+            <div 
+              key={doctor.id} 
+              className="px-4 py-3 hover:bg-gray-50 transition-colors duration-150"
+            >
+              <div className="grid grid-cols-12 gap-3 items-center">
+                {/* Doctor Column */}
+                <div className="col-span-4">
+                  <div className="flex items-center">
+                    <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center mr-3">
+                      <span className="text-xs font-bold text-white">
+                        {doctor.name.split(' ').map(n => n[0]).join('')}
+                      </span>
+                    </div>
+                    <div>
+                      <h4 className="text-sm font-medium text-gray-900">{doctor.name}</h4>
+                      <div className="flex items-center mt-0.5">
+                        <Phone className="w-3 h-3 text-gray-400 mr-1.5" />
+                        <span className="text-xs text-gray-600">{doctor.phone}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Specialty Column */}
+                <div className="col-span-2">
+                  <span className="text-sm text-gray-900 font-medium">{doctor.specialty}</span>
+                  <div className="flex items-center mt-0.5">
+                    <User className="w-3 h-3 text-gray-400 mr-1.5" />
+                    <span className="text-xs text-gray-600">{doctor.patients} patients</span>
+                  </div>
+                </div>
+
+                {/* Status Column */}
+                <div className="col-span-2">
+                  {getStatusBadge(doctor.status)}
+                  <div className="flex items-center mt-1">
+                    <Clock className="w-3 h-3 text-gray-400 mr-1.5" />
+                    <span className="text-xs text-gray-600">Next: {doctor.nextAvailable}</span>
+                  </div>
+                </div>
+
+                {/* Rating Column */}
+                <div className="col-span-2">
+                  <div className="flex items-center">
+                    <div className="flex mr-2">
+                      {getRatingStars(doctor.rating)}
+                    </div>
+                    <span className="text-sm font-medium text-gray-900">{doctor.rating}</span>
+                  </div>
+                  <div className="text-xs text-gray-600 mt-0.5">{doctor.availability}</div>
+                </div>
+
+                {/* Actions Column */}
+                <div className="col-span-2">
+                  <div className="flex items-center space-x-2">
+                    <button className="p-1.5 hover:bg-blue-50 rounded-lg transition-colors duration-150" title="Call">
+                      <Phone className="w-4 h-4 text-blue-600" />
+                    </button>
+                    <button className="p-1.5 hover:bg-blue-50 rounded-lg transition-colors duration-150" title="Message">
+                      <MessageCircle className="w-4 h-4 text-blue-600" />
+                    </button>
+                    <button className="p-1.5 hover:bg-gray-100 rounded-lg transition-colors duration-150">
+                      <MoreVertical className="w-4 h-4 text-gray-400" />
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              {/* Additional Details (Hidden by default, can expand) */}
+              <div className="mt-3 pt-3 border-t border-gray-100 hidden">
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="flex items-center text-xs text-gray-600">
+                    <Mail className="w-3 h-3 mr-2 text-gray-400" />
+                    <span>{doctor.email}</span>
+                  </div>
+                  <div className="text-right">
+                    <button className="text-xs text-blue-600 hover:text-blue-800 font-medium">
+                      View Full Schedule →
                     </button>
                   </div>
                 </div>
               </div>
             </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Footer Stats */}
+      <div className="grid grid-cols-3 gap-3">
+        <div className="bg-white p-3 border border-gray-200 rounded-lg">
+          <div className="flex items-center">
+            <div className="w-8 h-8 bg-blue-50 rounded-lg flex items-center justify-center mr-3">
+              <User className="w-4 h-4 text-blue-600" />
+            </div>
+            <div>
+              <p className="text-xs text-gray-600">On Duty</p>
+              <p className="text-lg font-bold text-gray-900">3</p>
+            </div>
           </div>
-        ))}
+        </div>
+        <div className="bg-white p-3 border border-gray-200 rounded-lg">
+          <div className="flex items-center">
+            <div className="w-8 h-8 bg-green-50 rounded-lg flex items-center justify-center mr-3">
+              <CheckCircle className="w-4 h-4 text-green-600" />
+            </div>
+            <div>
+              <p className="text-xs text-gray-600">Available</p>
+              <p className="text-lg font-bold text-gray-900">2</p>
+            </div>
+          </div>
+        </div>
+        <div className="bg-white p-3 border border-gray-200 rounded-lg">
+          <div className="flex items-center">
+            <div className="w-8 h-8 bg-purple-50 rounded-lg flex items-center justify-center mr-3">
+              <Star className="w-4 h-4 text-purple-600 fill-current" />
+            </div>
+            <div>
+              <p className="text-xs text-gray-600">Avg. Rating</p>
+              <p className="text-lg font-bold text-gray-900">4.8</p>
+            </div>
+          </div>
+        </div>
       </div>
 
       {/* View All Button */}
-      <div className="mt-6">
-        <button className="w-full py-3 bg-white border border-blue-600 text-blue-600 font-medium rounded-lg hover:bg-blue-50 transition-colors flex items-center justify-center">
-          <CheckCircle className="w-5 h-5 mr-2" />
+      <div className="pt-4 border-t border-gray-200">
+        <button className="w-full py-2.5 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium rounded-lg transition-colors duration-150 flex items-center justify-center">
+          <CheckCircle className="w-4 h-4 mr-2" />
           View All Doctors Schedule
         </button>
       </div>
