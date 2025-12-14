@@ -164,7 +164,7 @@ const AvailableDoctors = () => {
                 {/* Doctor Column */}
                 <div className="col-span-4">
                   <div className="flex items-center">
-                    <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center mr-3">
+                    <div className="w-8 h-8 bg-linear-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center mr-3">
                       <span className="text-xs font-bold text-white">
                         {doctor.name.split(' ').map(n => n[0]).join('')}
                       </span>

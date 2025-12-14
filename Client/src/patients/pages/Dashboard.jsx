@@ -79,7 +79,7 @@ const Dashboard = () => {
       {/* Main Content - Optimized for Tables */}
       <div className="flex flex-col xl:flex-row gap-6">
         {/* Left Column - Primary Content (Table takes more space) */}
-        <div className="xl:flex-[2] flex flex-col gap-6">
+        <div className="xl:flex-2 flex flex-col gap-6">
           {/* Appointments Table Section */}
           <div className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
             <div className="p-6">

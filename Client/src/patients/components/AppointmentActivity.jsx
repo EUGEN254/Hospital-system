@@ -45,7 +45,7 @@ const AppointmentActivity = () => {
             <div className="flex-1 ml-4">
               <div className="relative h-8">
                 <div 
-                  className="absolute h-full bg-gradient-to-r from-blue-500 to-blue-600 rounded-lg transition-all duration-300"
+                  className="absolute h-full bg-linear-to-r from-blue-500 to-blue-600 rounded-lg transition-all duration-300"
                   style={{ width: `${(item.appointments / maxAppointments) * 100}%` }}
                 >
                   <div className="absolute right-2 top-1/2 transform -translate-y-1/2 text-xs text-white font-medium">

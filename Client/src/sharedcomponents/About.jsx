@@ -55,7 +55,7 @@ const About = () => {
 
         {/* Button - kept your original styling */}
         <button 
-        onClick={()=>navigate('/contact-us')}
+        onClick={()=>navigate('/about-us')}
         className="bg-green-500 hover:bg-green-600 text-white py-3 px-8 rounded-lg font-semibold text-base md:text-lg transition duration-300 w-full md:w-auto">
           Explore More
         </button>

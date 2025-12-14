@@ -141,7 +141,7 @@ const Settings = () => {
       <div className="bg-white rounded-xl border border-gray-200 p-6">
         <div className="flex items-center space-x-6">
           <div className="relative">
-            <div className="w-24 h-24 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 flex items-center justify-center text-white text-3xl font-bold">
+            <div className="w-24 h-24 rounded-full bg-linear-to-r from-blue-500 to-purple-600 flex items-center justify-center text-white text-3xl font-bold">
               {profileData.firstName[0]}{profileData.lastName[0]}
             </div>
             <button className="absolute bottom-0 right-0 w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center hover:bg-blue-700 transition-colors">
@@ -189,7 +189,7 @@ const Settings = () => {
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2 flex items-center">
+            <label className="block text-sm font-medium text-gray-700 mb-2 items-center">
               <Mail className="w-4 h-4 mr-2" />
               Email Address
             </label>
@@ -201,7 +201,7 @@ const Settings = () => {
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2 flex items-center">
+            <label className="block text-sm font-medium text-gray-700 mb-2 items-center">
               <Smartphone className="w-4 h-4 mr-2" />
               Phone Number
             </label>
@@ -658,7 +658,7 @@ const Settings = () => {
       <div className="bg-white rounded-xl border border-gray-200 p-6">
         <div className="space-y-6">
           {/* Current Plan */}
-          <div className="p-4 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl">
+          <div className="p-4 bg-linear-to-r from-blue-50 to-indigo-50 rounded-xl">
             <h3 className="text-lg font-semibold text-gray-900 mb-2">Current Plan</h3>
             <div className="flex items-center justify-between">
               <div>

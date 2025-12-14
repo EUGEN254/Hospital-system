@@ -15,11 +15,6 @@ const Header = () => {
           backgroundImage: `url(${assets.header})`,
         }}
       >
-        {/* Navbar */}
-        <div className="absolute top-0 left-0 w-full z-60">
-          <Navbar />
-        </div>
-
         {/* Content */}
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full max-w-6xl px-4 z-10">
           <div className="flex flex-col md:flex-row items-center justify-between gap-8">

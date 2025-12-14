@@ -6,6 +6,7 @@ import {
   FaInstagram,
   FaLinkedinIn,
 } from "react-icons/fa";
+import {Link} from 'react-router-dom'
 
 const Footer = () => {
   return (
@@ -54,21 +55,21 @@ const Footer = () => {
         {/* Quick Links */}
         <div className="flex flex-col gap-3">
           <h4 className="text-white font-semibold mb-2 text-lg">Quick Links</h4>
-          <a href="#" className="hover:text-white transition duration-300">
+          <Link to='/' className="hover:text-white transition duration-300">
             Home
-          </a>
-          <a href="#" className="hover:text-white transition duration-300">
+          </Link>
+          <Link to='/about-us'
+           className="hover:text-white transition duration-300">
             About Us
-          </a>
-          <a href="#" className="hover:text-white transition duration-300">
-            Services
-          </a>
-          <a href="#" className="hover:text-white transition duration-300">
+          </Link>
+          <Link to='/available-doctors'
+          href="#" className="hover:text-white transition duration-300">
             Doctors
-          </a>
-          <a href="#" className="hover:text-white transition duration-300">
+          </Link>
+          <Link to='/contact-us'
+           className="hover:text-white transition duration-300">
             Contact
-          </a>
+          </Link>
         </div>
 
         {/* Contact Info */}

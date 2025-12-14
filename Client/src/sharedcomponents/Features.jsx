@@ -41,7 +41,7 @@ const Features = () => {
         </p>
         <button className="group bg-green-100 px-6 py-2 rounded-lg inline-block">
           <span 
-          onClick={()=>navigate('/more-features')}
+          onClick={()=>navigate('/features')}
           className="text-green-600 font-semibold transition-transform duration-300 group-hover:translate-x-2">
             Learn More &rarr;
           </span>

@@ -166,7 +166,7 @@ const Doctors = () => {
     : "0.0";
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
+    <div className="min-h-screen bg-linear-to-b from-gray-50 to-white">
       {/* Professional Header with Breadcrumb */}
       <div className="bg-white border-b border-gray-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -377,7 +377,7 @@ const Doctors = () => {
 
         {/* Trust Signals */}
         <div className="mt-16">
-          <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl p-8">
+          <div className="bg-linear-to-r from-blue-50 to-indigo-50 rounded-2xl p-8">
             <h3 className="text-xl font-bold text-gray-900 mb-6 text-center">
               Why Choose Our Doctors?
             </h3>
@@ -504,7 +504,7 @@ const DoctorCard = ({ doctor, viewMode, onSelect }) => {
                   <div>
                     <h4 className="font-semibold text-gray-900 mb-2">Location</h4>
                     <div className="flex items-center text-gray-600">
-                      <MapPin className="w-5 h-5 mr-2 flex-shrink-0" />
+                      <MapPin className="w-5 h-5 mr-2 shrink-0" />
                       {doctor.location}
                     </div>
                   </div>
@@ -582,12 +582,12 @@ const DoctorCard = ({ doctor, viewMode, onSelect }) => {
           </div>
 
           <div className="flex items-center text-gray-600">
-            <MapPin className="w-5 h-5 mr-2 flex-shrink-0" />
+            <MapPin className="w-5 h-5 mr-2 shrink-0" />
             <span className="text-sm truncate">{doctor.location}</span>
           </div>
 
           <div className="flex items-center text-gray-600">
-            <Clock className="w-5 h-5 mr-2 flex-shrink-0" />
+            <Clock className="w-5 h-5 mr-2 shrink-0" />
             <span className="text-sm font-medium text-green-600">{doctor.nextAvailable}</span>
           </div>
         </div>

@@ -7,34 +7,42 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
 
-
   const navlinks = [
-    "Home",
-    "About-Us",
-    "Features",
-    "Contact-Us",
-    "Doctors",
-    "Billing-Information",
+    { name: "Home", path: "/" },
+    { name: "About Us", path: "/about-us" },
+    { name: "Features", path: "/features" },
+    { name: "Contact Us", path: "/contact-us" },
+    { name: "Doctors", path: "/available-doctors" },
+    { name: "Billing", path: "/billing" },
   ];
 
   return (
-    <nav className="bg-transparent max-w-5xl mx-auto p-4 relative z-50">
+    <nav className="bg-transparent max-w-5xl mx-auto  relative z-50">
       <div className="flex justify-between items-center">
         {/* Logo */}
         <div>
-          <img src={assets.logo} alt="logo" className="h-16 md:h-22" />
+          <img src={assets.logo} alt="logo" className="h-16 md:h-22 cursor-pointer" onClick={() => navigate("/")} />
         </div>
 
         {/* Desktop Nav Links */}
         <div className="hidden md:flex space-x-6">
           {navlinks.map((link) => (
             <NavLink
-              key={link}
-              to={`/${link.toLowerCase().replace(/ /g, "")}`}
-              className="relative text-gray-400 font-medium hover:text-gray-200 transition duration-300 group"
+              key={link.name}
+              to={link.path}
+              end={link.path === "/"}
+              className={({ isActive }) =>
+                `relative font-medium transition duration-300 group ${
+                  isActive 
+                    ? "text-white" 
+                    : "text-gray-400 hover:text-gray-200"
+                }`
+              }
             >
-              {link}
-              <span className="absolute left-0 -bottom-1 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full"></span>
+              {link.name}
+              <span className={`absolute left-0 -bottom-1 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full ${
+                ({ isActive }) => isActive ? "w-full" : ""
+              }`}></span>
             </NavLink>
           ))}
         </div>
@@ -42,8 +50,9 @@ const Navbar = () => {
         {/* Sign Up button (desktop) */}
         <div className="hidden md:block">
           <button 
-          onClick={()=>navigate('/sign-up')}
-          className="bg-green-300 py-2 px-6 text-gray-500 rounded-lg shadow-md hover:bg-green-600 font-semibold transition duration-300">
+            onClick={() => navigate('/sign-up')}
+            className="bg-green-500 hover:bg-green-600 py-2 px-6 text-white rounded-lg shadow-md font-semibold transition duration-300"
+          >
             Sign Up
           </button>
         </div>
@@ -74,17 +83,28 @@ const Navbar = () => {
           <div className="flex flex-col gap-6 mt-8">
             {navlinks.map((link) => (
               <NavLink
-                key={link}
-                to={`/${link.toLowerCase().replace(/ /g, "")}`}
-                className="text-gray-300 font-medium hover:text-white transition duration-300"
+                key={link.name}
+                to={link.path}
+                end={link.path === "/"}
+                className={({ isActive }) =>
+                  `font-medium transition duration-300 ${
+                    isActive 
+                      ? "text-white border-l-4 border-green-500 pl-4" 
+                      : "text-gray-300 hover:text-white"
+                  }`
+                }
                 onClick={() => setIsOpen(false)}
               >
-                {link}
+                {link.name}
               </NavLink>
             ))}
             <button 
-            onClick={()=>navigate('/sign-up')}
-            className="bg-green-500 py-2 px-4 text-white rounded-lg font-semibold hover:bg-green-600 transition duration-300">
+              onClick={() => {
+                navigate('/sign-up');
+                setIsOpen(false);
+              }}
+              className="bg-green-500 py-3 px-4 text-white rounded-lg font-semibold hover:bg-green-600 transition duration-300 mt-4"
+            >
               Sign Up
             </button>
           </div>

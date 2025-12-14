@@ -10,16 +10,29 @@ import PatientHome from "./patients/pages/PatientHome";
 import Dashboard from "./patients/pages/Dashboard";
 import Settings from "./patients/pages/Settings";
 import Doctors from "./patients/pages/Doctors";
-import ContactUs from "./sharedpages/ContactUs";
-import MoreFeatures from "./sharedpages/MoreFeatures";
+import DoctorsPage from "./sharedpages/DoctorsPage";
+import BillingPage from "./sharedpages/BillingPage";
+import ContactUsPage from "./sharedpages/ContactUsPage";
+import AboutUsPage from "./sharedpages/AboutUsPage";
+import FeaturesPage from "./sharedpages/FeaturesPage";
+import PublicLayout from "./layouts/PublicLayout";
+import ScrollToTop from "./utils/ScrollToTop.js";
 
 const App = () => {
   const location = useLocation();
 
-  // check if the current path start with /patient
+  // Check if the current path starts with /patient
   const isPatientRoute = location.pathname.startsWith("/patient");
+
+  // Check if it's a public route that should NOT have header/navbar
+  const noHeaderRoutes = ["/sign-up", "/reset-password"];
+  const shouldShowHeader =
+    !noHeaderRoutes.includes(location.pathname) && !isPatientRoute;
+
   return (
     <>
+      <ScrollToTop />  {/* scroll everything to the top */}
+
       <ToastContainer
         position="top-right"
         autoClose={1500}
@@ -33,26 +46,29 @@ const App = () => {
 
       <div>
         <Routes>
-          {/* public route */}
-          <Route path="/" element={<LandingPage />} />
+          {/* Public Routes WITH Header */}
+          <Route path="/" element={<PublicLayout />}>
+            <Route index element={<LandingPage />} />
+            <Route path="/available-doctors" element={<DoctorsPage />} />
+            <Route path="/billing" element={<BillingPage />} />
+            <Route path="/contact-us" element={<ContactUsPage />} />
+            <Route path="/about-us" element={<AboutUsPage />} />
+            <Route path="/features" element={<FeaturesPage />} />
+          </Route>
+
+          {/* Public Routes WITHOUT Header */}
           <Route path="/sign-up" element={<LoginSignUp />} />
           <Route path="/reset-password" element={<ForgotPassword />} />
-          <Route path="/contact-us" element={<ContactUs />} />
-          <Route path="/more-features" element={<MoreFeatures />} />
 
-          {/* patient routes */}
+          {/* Patient routes */}
           <Route path="/patient-dashboard" element={<PatientHome />}>
             <Route index element={<Dashboard />} />
             <Route path="doctors" element={<Doctors />} />
             <Route path="settings" element={<Settings />} />
           </Route>
-
-          {/* doctor route */}
-
-          {/* admin routes */}
         </Routes>
 
-        {/* only show footer if not parient route */}
+        {/* Only show footer if not patient route */}
         {!isPatientRoute && <Footer />}
       </div>
     </>
