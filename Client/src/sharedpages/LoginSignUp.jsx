@@ -100,7 +100,6 @@ const LoginSignUp = () => {
         { withCredentials: true }
       );
 
-      console.log(res);
 
       if (res.data.success) {
         toast.success("Logged in with Google!");
